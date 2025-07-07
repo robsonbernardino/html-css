@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mídias em HTML5</title>
+    <link rel="stylesheet" href="estilos.css">
+</head>
+<body>
+    <h1>Imagens dinâmicas</h1>
+    <p>tente abrir esse site em vários dispositivos diferentes ou simplesmente aumente e diminua o tamanho do seu navegador.</p>
+    <p>Para trabalhar uma imagem para funcionar em dispositivos diferentes, geralmente criamos uma imagem do tamanho 'P', 'M' e 'G', e trabalhamos com a tag &lt;picture &gt;. em media, podemos colocar o valor max-width e srcset colocamos o edereço da imagem.</p>
+    <picture>
+        <source media="(max-width: 720px)" srcset="imagens/foto-p.png" type="image/png">
+        <source media="(max-width: 1030px)" srcset="imagens/foto-m.png" type="image/png">
+        <img src="imagens/foto-g.png" alt="imagen flexível">
+    </picture>
+    <h1>Reproduzindo áudio</h1>
+    <p>Vamos aprender a a reproduzir áudio em HTML5.</p>
+    <audio src="audio/GTA-Type-Beat-Dyalla.mp3"  controls></audio>
+    <p>O áudio acima, foi incluido com a tag &lt;audio src&gt;, e dentro da tag ainda inseri o autoplay para a música iniciar assim que a página é aberta e também o "controls", para abrir o controlador de música. </p>
+    <audio preload="metadata" controls loop>
+        <source src="audio/Til-I-Hear'-em-Say(Instrumental)-NEFFEX.mp3" type="audio/mpeg">
+        <source src="audio/GTA-Type-Beat-Dyalla.mp3" type="audio/mpeg">
+        <p>Infelizmente seu navegador não consegue reproduzir áudio mp3. <a href="audio/Til-I-Hear'-em-Say(Instrumental)-NEFFEX.mp3">Clique aqui para baixar o arquivo.</a></p>
+    </audio>
+    <p>O áudio acima foi inserido atravéz da tag &lt;audio&gt;, ainda dentro da tag adicionei o preload, controls e loop.</p>
+    <button><a href="../index.html" target="_self" rel="internal">Voltar</a></button>
+
+    
+</body>
+</html>
