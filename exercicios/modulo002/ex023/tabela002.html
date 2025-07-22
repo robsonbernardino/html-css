@@ -5,26 +5,44 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tabelas Grandes</title>
     <style>
-        body{
+        body  { /*CORPO TODO*/
             font-family: Arial, Helvetica, sans-serif;
         }
-        table{
+        /*EFEITO ZEBRADO*/
+        tbody > tr:nth-child(even){ /*2n-1, 2n, odd(ímpar), even(par)*/
+            background-color:lightgray;
+
+        }
+        /*LEGENDA*/
+        caption{
+            font-size: 1.5em;
+            font-weight: bold;
+            padding: 10px;
+            background-color: lightgray;
+        }
+        table{ /*TABELA*/
             width: 500px;
             border-collapse: collapse;
             text-align: center;
         
         }
-        thead, tfoot{
-            background-color: gray;
+        thead, tfoot{ /*CABEÇALHO E RODAPÉ*/
+            background-color: #5a5a5a;
             color: white;
         }
-        td, th{
+        thead > tr > th{ /*CABEÇALHO FIXA*/
+            position: sticky;
+            background-color: #5a5a5a;
+            top: -1px;
+        }
+        td, th{ /*TÍTULOS E DADOS*/
             border: 1px solid black;
             padding: 10px;
         }
-        td.num{
+        td.num{ /*DADOS NUMERICOS*/
             text-align: left;
         }
+        
     </style>
 </head>
 <body>
@@ -40,9 +58,10 @@
             TR, TD, TH
             -->
     <TAble>
+        <caption>População das Unidades Federativas</caption>
         <thead>
-            <th>Estado</th>
-            <th>População</th>
+            <th scope="col">Estado</th>
+            <th scope="col" id="popu" style="width: 95px;">População</th>
         </thead>
         <tbody>
             <tr>
@@ -158,11 +177,19 @@
 
         <tfoot>
             <tr>
-                <th>Total de Habitantes</th>
+                <th scope="row">Total de Habitantes</th>
                 <td class="num"><strong>212 583 750</strong>	</td>
             </tr>
         </tfoot>
         </tbody>
-    </TAble>     
+    </TAble> 
+    <h1>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Esse nesciunt, hic, pariatur ad assumenda consequatur illo harum tempora veniam error, sint recusandae minus! Quisquam dignissimos asperiores labore ratione voluptas neque.</h1>  
+
+    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quidem quia odit nisi, quas vel, perspiciatis consequuntur deserunt cupiditate ab alias magni numquam iste harum exercitationem unde sint. Officiis, ipsam deserunt. Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptatem magnam asperiores debitis corrupti unde minima totam! Distinctio doloremque, eum quos commodi, ut fugit asperiores expedita, quia ullam aperiam non quas. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Officiis facere vel, provident dolorum unde quae similique repudiandae blanditiis obcaecati. Voluptatibus qui voluptas reiciendis sit. Ullam ab distinctio nesciunt at nostrum. Lorem ipsum dolor sit amet consectetur, adipisicing elit. Suscipit consequuntur mollitia doloribus autem harum neque reprehenderit officiis perferendis ipsam ex? Ipsa exercitationem quo provident harum. Minus laborum amet aliquid pariatur? Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sapiente, laborum commodi. Labore natus facere enim temporibus hic et, accusantium a libero provident delectus. Quia atque ipsa soluta veritatis obcaecati consequatur!</p>  
+    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quidem quia odit nisi, quas vel, perspiciatis consequuntur deserunt cupiditate ab alias magni numquam iste harum exercitationem unde sint. Officiis, ipsam deserunt. Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptatem magnam asperiores debitis corrupti unde minima totam! Distinctio doloremque, eum quos commodi, ut fugit asperiores expedita, quia ullam aperiam non quas. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Officiis facere vel, provident dolorum unde quae similique repudiandae blanditiis obcaecati. Voluptatibus qui voluptas reiciendis sit. Ullam ab distinctio nesciunt at nostrum. Lorem ipsum dolor sit amet consectetur, adipisicing elit. Suscipit consequuntur mollitia doloribus autem harum neque reprehenderit officiis perferendis ipsam ex? Ipsa exercitationem quo provident harum. Minus laborum amet aliquid pariatur? Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sapiente, laborum commodi. Labore natus facere enim temporibus hic et, accusantium a libero provident delectus. Quia atque ipsa soluta veritatis obcaecati consequatur!</p> 
+    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quidem quia odit nisi, quas vel, perspiciatis consequuntur deserunt cupiditate ab alias magni numquam iste harum exercitationem unde sint. Officiis, ipsam deserunt. Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptatem magnam asperiores debitis corrupti unde minima totam! Distinctio doloremque, eum quos commodi, ut fugit asperiores expedita, quia ullam aperiam non quas. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Officiis facere vel, provident dolorum unde quae similique repudiandae blanditiis obcaecati. Voluptatibus qui voluptas reiciendis sit. Ullam ab distinctio nesciunt at nostrum. Lorem ipsum dolor sit amet consectetur, adipisicing elit. Suscipit consequuntur mollitia doloribus autem harum neque reprehenderit officiis perferendis ipsam ex? Ipsa exercitationem quo provident harum. Minus laborum amet aliquid pariatur? Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sapiente, laborum commodi. Labore natus facere enim temporibus hic et, accusantium a libero provident delectus. Quia atque ipsa soluta veritatis obcaecati consequatur!</p> 
+    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quidem quia odit nisi, quas vel, perspiciatis consequuntur deserunt cupiditate ab alias magni numquam iste harum exercitationem unde sint. Officiis, ipsam deserunt. Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptatem magnam asperiores debitis corrupti unde minima totam! Distinctio doloremque, eum quos commodi, ut fugit asperiores expedita, quia ullam aperiam non quas. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Officiis facere vel, provident dolorum unde quae similique repudiandae blanditiis obcaecati. Voluptatibus qui voluptas reiciendis sit. Ullam ab distinctio nesciunt at nostrum. Lorem ipsum dolor sit amet consectetur, adipisicing elit. Suscipit consequuntur mollitia doloribus autem harum neque reprehenderit officiis perferendis ipsam ex? Ipsa exercitationem quo provident harum. Minus laborum amet aliquid pariatur? Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sapiente, laborum commodi. Labore natus facere enim temporibus hic et, accusantium a libero provident delectus. Quia atque ipsa soluta veritatis obcaecati consequatur!</p> 
+    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quidem quia odit nisi, quas vel, perspiciatis consequuntur deserunt cupiditate ab alias magni numquam iste harum exercitationem unde sint. Officiis, ipsam deserunt. Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptatem magnam asperiores debitis corrupti unde minima totam! Distinctio doloremque, eum quos commodi, ut fugit asperiores expedita, quia ullam aperiam non quas. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Officiis facere vel, provident dolorum unde quae similique repudiandae blanditiis obcaecati. Voluptatibus qui voluptas reiciendis sit. Ullam ab distinctio nesciunt at nostrum. Lorem ipsum dolor sit amet consectetur, adipisicing elit. Suscipit consequuntur mollitia doloribus autem harum neque reprehenderit officiis perferendis ipsam ex? Ipsa exercitationem quo provident harum. Minus laborum amet aliquid pariatur? Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sapiente, laborum commodi. Labore natus facere enim temporibus hic et, accusantium a libero provident delectus. Quia atque ipsa soluta veritatis obcaecati consequatur!</p> 
+    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quidem quia odit nisi, quas vel, perspiciatis consequuntur deserunt cupiditate ab alias magni numquam iste harum exercitationem unde sint. Officiis, ipsam deserunt. Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptatem magnam asperiores debitis corrupti unde minima totam! Distinctio doloremque, eum quos commodi, ut fugit asperiores expedita, quia ullam aperiam non quas. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Officiis facere vel, provident dolorum unde quae similique repudiandae blanditiis obcaecati. Voluptatibus qui voluptas reiciendis sit. Ullam ab distinctio nesciunt at nostrum. Lorem ipsum dolor sit amet consectetur, adipisicing elit. Suscipit consequuntur mollitia doloribus autem harum neque reprehenderit officiis perferendis ipsam ex? Ipsa exercitationem quo provident harum. Minus laborum amet aliquid pariatur? Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sapiente, laborum commodi. Labore natus facere enim temporibus hic et, accusantium a libero provident delectus. Quia atque ipsa soluta veritatis obcaecati consequatur!</p> 
 </body>
 </html>
