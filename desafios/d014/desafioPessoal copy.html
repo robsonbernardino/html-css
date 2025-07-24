@@ -1,0 +1,160 @@
+<!-- ✅ Código completo com HTML, CSS e JavaScript: html, Copiar, Editar 
+-->
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Lista de Tarefas</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 30px;
+    }
+
+    input[type="text"] {
+      padding: 8px;
+      width: 250px;
+    }
+
+    button {
+      padding: 8px 12px;
+      margin-left: 5px;
+    }
+
+    table {
+      width: 100%;
+      margin-top: 20px;
+      border-collapse: collapse;
+    }
+
+    th, td {
+      border: 1px solid #ccc;
+      padding: 10px;
+      text-align: left;
+    }
+
+    .concluida {
+      background-color: #c8f7c5;
+      text-decoration: line-through;
+    }
+
+    .acoes button {
+      margin-right: 5px;
+    }
+
+    select {
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Lista de Tarefas</h1>
+
+  <input type="text" id="inputTarefa" placeholder="Digite sua tarefa" />
+  <button onclick="adicionarTarefa()">Adicionar</button>
+
+  <div>
+    <label for="filtro">Filtrar:</label>
+    <select id="filtro" onchange="renderizarTarefas()">
+      <option value="todas">Todas</option>
+      <option value="pendentes">Pendentes</option>
+      <option value="concluidas">Concluídas</option>
+    </select>
+  </div>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Tarefa</th>
+        <th>Status</th>
+        <th>Ações</th>
+      </tr>
+    </thead>
+    <tbody id="listaTarefas"></tbody>
+  </table>
+
+  <script>
+    let tarefas = JSON.parse(localStorage.getItem("tarefas")) || [];
+
+    function salvarTarefas() {
+      localStorage.setItem("tarefas", JSON.stringify(tarefas));
+    }
+
+    function adicionarTarefa() {
+      const input = document.getElementById("inputTarefa");
+      const nome = input.value.trim();
+
+      if (nome === "") {
+        alert("Digite uma tarefa!");
+        return;
+      }
+
+      tarefas.push({ nome, concluida: false });
+      salvarTarefas();
+      input.value = "";
+      renderizarTarefas();
+    }
+
+    function renderizarTarefas() {
+      const tbody = document.getElementById("listaTarefas");
+      tbody.innerHTML = "";
+
+      const filtro = document.getElementById("filtro").value;
+      const tarefasFiltradas = tarefas.filter(tarefa => {
+        if (filtro === "pendentes") return !tarefa.concluida;
+        if (filtro === "concluidas") return tarefa.concluida;
+        return true;
+      });
+
+      tarefasFiltradas.forEach((tarefa, index) => {
+        const tr = document.createElement("tr");
+        tr.className = tarefa.concluida ? "concluida" : "";
+
+        const tdNome = document.createElement("td");
+        tdNome.textContent = tarefa.nome;
+        tdNome.contentEditable = true;
+        tdNome.onblur = () => {
+          tarefa.nome = tdNome.textContent.trim();
+          salvarTarefas();
+        };
+
+        const tdStatus = document.createElement("td");
+        tdStatus.textContent = tarefa.concluida ? "Concluída" : "Pendente";
+
+        const tdAcoes = document.createElement("td");
+        tdAcoes.className = "acoes";
+
+        const btnConcluir = document.createElement("button");
+        btnConcluir.textContent = tarefa.concluida ? "Desfazer" : "Concluir";
+        btnConcluir.onclick = () => {
+          tarefa.concluida = !tarefa.concluida;
+          salvarTarefas();
+          renderizarTarefas();
+        };
+
+        const btnExcluir = document.createElement("button");
+        btnExcluir.textContent = "Excluir";
+        btnExcluir.onclick = () => {
+          if (confirm("Deseja realmente excluir essa tarefa?")) {
+            tarefas.splice(index, 1);
+            salvarTarefas();
+            renderizarTarefas();
+          }
+        };
+
+        tdAcoes.appendChild(btnConcluir);
+        tdAcoes.appendChild(btnExcluir);
+
+        tr.appendChild(tdNome);
+        tr.appendChild(tdStatus);
+        tr.appendChild(tdAcoes);
+
+        tbody.appendChild(tr);
+      });
+    }
+
+    // Inicializa a lista ao carregar
+    renderizarTarefas();
+  </script>
+</body>
+</html>

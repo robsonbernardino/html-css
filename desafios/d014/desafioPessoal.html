@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro de Tarefas</title>
+    <style>
+        body{
+            margin-left: 30px;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        input{
+            padding: 10px;
+            min-width: 350px;
+            margin-bottom: 20px;
+        }
+        button{
+            padding: 10px 20px;
+
+        }
+        table{
+            width: 800px;
+            border-collapse: collapse;
+        }
+        th,td{
+            padding: 10px;
+            text-align: center;
+            border: 1px solid black;
+        }
+        .concluida{
+            background-color: lightgreen;
+            text-decoration: line-through;
+        }
+
+    </style>
+</head>
+<body>
+    <h1>Lista de Tarefas</h1>
+
+        <div>
+            <input type="text" name="inputTarefa" id="inputTarefa" placeholder="Digite sua Tarefa">
+            <button onclick="adicionarTarefa()">Adicionar</button>
+        </div>
+    
+    <table>
+        <thead>
+            <tr>
+            <th>Tarefa</th>
+            <th>Status</th>
+            <th>Ações</th>
+            </tr>
+        </thead>
+        <tbody id="listaTarefas">
+             <!-- Tarefas aparecerão aqui -->
+        </tbody>
+    </table>
+    <script>
+        function adicionarTarefa() {
+            //alert('Testando o botão')
+            var inputTarefa = document.querySelector("#inputTarefa");
+
+            if (inputTarefa.value.trim() === '') {
+                alert('Digite a tarefa a ser realizada');
+                return;
+            }
+
+            //Criar elementos
+            var novaLinha = document.createElement('tr')
+
+            var colunaTarefa = document.createElement('td')
+            var colunaStatus = document.createElement('td')
+            var colunaAcoes = document.createElement('td')
+
+            //prencher tarefa e status
+            colunaTarefa.textContent = inputTarefa.value//nome da tarefa
+            colunaStatus.textContent = "pendente"//statatus inicial
+
+            //botão concluir
+            var botaoConcluir = document.createElement("button");
+            botaoConcluir.textContent = "Concluir"
+
+            //botão excluir
+            var botaoExcluir = document.createElement("button");
+            botaoExcluir.textContent = "Excluir"
+
+            //adicionar os botões na coluna certa
+            colunaAcoes.appendChild(botaoConcluir);
+            colunaAcoes.appendChild(botaoExcluir);
+
+            novaLinha.appendChild(colunaTarefa);
+            novaLinha.appendChild(colunaStatus);
+            novaLinha.appendChild(colunaAcoes);
+
+            var corpoTabela = document.querySelector("#listaTarefas")
+            corpoTabela.appendChild(novaLinha);
+
+            inputTarefa.value = '';
+
+            botaoConcluir.onclick = function () {
+                var linha = this.parentElement.parentElement;
+                var statusCell = linha.children[1];
+                statusCell.textContent = "Concluída";
+                linha.classList.add("concluida");
+            }
+
+            botaoExcluir.onclick = function (){
+                var linha = this.parentElement.parentElement;
+                if( confirm("Tem certeza que Deseja excluir esta tarefa?")) {
+                linha.remove();
+                }
+            }
+
+        }
+    </script>
+</body>
+</html>
