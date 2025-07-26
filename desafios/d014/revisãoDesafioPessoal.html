@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Tarefas</title>
+    <style>
+        body{
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        input{
+            padding: 10px;
+            margin-bottom: 20px;
+        }
+        table{
+            border-collapse: collapse;
+            width: 800px;
+        }
+        th, td{
+            border: 1px solid black;
+            padding: 10px;
+
+        }
+        .concluida{
+            background-color: aquamarine;
+        }
+    </style>
+</head>
+<body>
+    <h1>Lista de Tarefas</h1>
+    <div>
+        <input type="text" name="inputTarefa" id="inputTarefa">
+        <input type="button" value="Iserir Tarefa" onclick="inserirTarefa()">
+    </div>
+
+    <div>
+        <table>
+            <thead>
+                <th>Tarefa</th>
+                <th>Status</th>
+                <th>Ações</th>  
+            </thead>
+
+            <tbody id="corpoTabela">
+                <!--As tarefas vão aparecer aqui-->
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        var txtTarefa = document.querySelector("#inputTarefa");
+
+        function inserirTarefa() {
+            if (txtTarefa.value.trim() === '') {
+                alert("Digite a tarefa a ser inserida.")
+                return
+            }
+            
+            //criar os elementos
+            var novaLinha = document.createElement('tr');
+
+            var colunaTarefa = document.createElement('td');
+            var colunaStatus = document.createElement('td');
+            var colunaAcoes = document.createElement('td');
+
+            //preencher os dados
+            colunaTarefa.textContent = txtTarefa.value;
+            colunaStatus.textContent = "Pendente";
+
+            novaLinha.appendChild(colunaTarefa)
+            novaLinha.appendChild(colunaStatus)
+            novaLinha.appendChild(colunaAcoes)
+
+            var corpoTabela = document.querySelector("#corpoTabela")
+            corpoTabela.appendChild(novaLinha)
+
+            //Criar os botões
+            var botaoConcluir = document.createElement("button");
+            botaoConcluir.textContent = "Concluir"
+            var botaoExcluir = document.createElement("button");
+            botaoExcluir.textContent = "Excluir"
+
+            //adicionar botões na linha certa
+            colunaAcoes.appendChild(botaoConcluir)
+            colunaAcoes.appendChild(botaoExcluir)
+
+            botaoConcluir.onclick = function () {
+                var linha = this.parentElement.parentElement;
+                var statusCell = linha.children[1];
+                statusCell.textContent = "Concluída";
+                linha.classList.add("concluida");
+            }
+
+            botaoExcluir.onclick = function (){
+                var linha = this.parentElement.parentElement;
+                if( confirm("Tem certeza que Deseja excluir esta tarefa?")) {
+                linha.remove();
+                }
+            }
+
+
+        }
+    </script>
+</body>
+</html>
